@@ -1,6 +1,20 @@
 var webshot = require('./lib/webshot');
 
-webshot('globo.com', './amazon.png', function(err) {
+
+var options = {
+  screenSize: {
+    width: 320
+  , height: 480
+  }
+, shotSize: {
+    width: 320
+  , height: 500//'all'
+  }
+, userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+    + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g'
+};
+
+webshot('globo.com', './amazon.png', options,  function(err) {
   if (err) return console.log(err);
   console.log('OK');
 
