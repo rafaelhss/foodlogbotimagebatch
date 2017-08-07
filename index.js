@@ -9,16 +9,22 @@ app.set('port', (process.env.PORT || 5000));
 app.get('/', function (req, res) {
     
     var options = {
-  screenSize: {
-    width: 320
-  , height: 480
-  }
-, shotSize: {
-    width: 320
-  , height: 500//'all'
-  }
-, userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
-    + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g'
+        screenSize: {
+            width: 320
+          , height: 480
+        }, 
+        shotSize: {
+            width: 320
+          , height: 500//'all'
+        }, 
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+        script: function() {
+            pageIsReady(function() {
+              window.callPhantom('takeShot');
+            });
+          }
+        , takeShotOnCallback: true
 };
 
 webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName,  function(err) {
