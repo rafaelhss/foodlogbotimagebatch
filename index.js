@@ -1,7 +1,10 @@
 var webshot = require('./lib/webshot');
+var express = require('express');
+var app = express();
 
-
-var options = {
+app.get('/', function (req, res) {
+    
+    var options = {
   screenSize: {
     width: 320
   , height: 480
@@ -15,9 +18,12 @@ var options = {
 };
 
 webshot('globo.com', './amazon.png', options,  function(err) {
-  if (err) return console.log(err);
+  if (err) { 
+        res.send(err);
+        return console.log(err);
+  }
   console.log('OK');
-
+    
 	var request = require('request');
 	var fs = require('fs');
 	var url ='https://requestb.in/1k094v51'
@@ -38,11 +44,23 @@ webshot('globo.com', './amazon.png', options,  function(err) {
 	};
 	request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
 	  if (err) {
+          res.send(err)
+  
 	    return console.error('upload failed:', err);
 	  }
 	  console.log('Upload successful!  Server responded with:', body);
-	});
+      res.send("OK")
+    });
 
 });
+
+});
+
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port 3000!');
+});
+
+
+
 
 
