@@ -19,12 +19,7 @@ app.get('/', function (req, res) {
         }, 
         userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
             + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
-        script: function() {
-            pageIsReady(function() {
-              window.callPhantom('takeShot');
-            });
-          }
-        , takeShotOnCallback: true
+        renderDelay: 5000
 };
 
 webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName,  function(err) {
