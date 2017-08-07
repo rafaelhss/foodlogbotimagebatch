@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
     + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g'
 };
 
-webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName, options,  function(err) {
+webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName,  function(err) {
   if (err) { 
         res.send(err);
         return console.log(err);
