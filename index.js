@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
         renderDelay: 5000
 };
 
-webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName,  function(err) {
+webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName, options, function(err) {
   if (err) { 
         res.send(err);
         return console.log(err);
