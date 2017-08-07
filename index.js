@@ -1,6 +1,7 @@
 var webshot = require('./lib/webshot');
 var express = require('express');
 var app = express();
+var fileName = 'weight.png';
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -20,7 +21,7 @@ app.get('/', function (req, res) {
     + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g'
 };
 
-webshot('globo.com', './amazon.png', options,  function(err) {
+webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName, options,  function(err) {
   if (err) { 
         res.send(err);
         return console.log(err);
@@ -43,7 +44,7 @@ webshot('globo.com', './amazon.png', options,  function(err) {
 
 
 	var formData = {
-	  photo: fs.createReadStream('amazon.png')
+	  photo: fs.createReadStream(fileName)
 	};
 	request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
 	  if (err) {
