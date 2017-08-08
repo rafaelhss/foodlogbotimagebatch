@@ -23,7 +23,7 @@ var options = {
     renderDelay: 5000
 };
 
-webshot('http://foodlogbotonlinereports.herokuapp.com/', './' + fileName, options, function(err) {
+webshot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3', './' + fileName, options, function(err) {
   if (err) { 
         res.send(err);
         return console.log(err);
