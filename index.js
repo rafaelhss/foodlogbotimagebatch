@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
 
 
     sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png');
-    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html','timeline.png');
+    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3','timeline.png');
 
     function sendShot(url, fileName) {    
 
@@ -55,12 +55,9 @@ app.get('/', function (req, res) {
             };
             request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
               if (err) {
-                  res.send(err)
-
                 return console.error('upload failed:', err);
               }
               console.log('Upload successful!  Server responded with:', body);
-              res.send("OK")
             });
 
         });
