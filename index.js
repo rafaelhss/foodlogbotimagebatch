@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
                 res.send(err);
                 return console.log(err);
           }
-          console.log('OK');
+          console.log('OK:  ' + fileName);
 
             var request = require('request');
             var fs = require('fs');
