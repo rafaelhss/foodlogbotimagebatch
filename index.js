@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
     sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png');
     sendShot('https://foodlogbotonlinereports.herokuapp.com/timeline/index2.html','timeline.png');
 
-    function sendShot(url, filename) {    
+    function sendShot(url, fileName) {    
 
         webshot(url, './' + fileName, options, function(err) {
           if (err) { 
