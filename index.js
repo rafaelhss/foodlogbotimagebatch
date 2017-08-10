@@ -11,10 +11,10 @@ app.get('/', function (req, res) {
        /* screenSize: {
             width: 320
           , height: 480
-        },*/ 
+        }, 
         shotSize: {
-            /*width: 320
-          , */height: 'all'
+            width: 320
+          , height: 'all'
         }, /*
         userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
             + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
@@ -23,10 +23,26 @@ app.get('/', function (req, res) {
     };
 
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png');
-    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3','timeline.png');
+    var options2 = {
+       /* screenSize: {
+            width: 320
+          , height: 480
+        },*/ 
+        shotSize: {
+            /*width: 320
+          , */height: 'all'
+        }, /*
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+            */
+        renderDelay: 10000
+    };
 
-    function sendShot(url, fileName) {    
+
+    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png', options);
+    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3','timeline.png', options2);
+
+    function sendShot(url, fileName, options) {    
 
         webshot(url, './' + fileName, options, function(err) {
           if (err) { 
