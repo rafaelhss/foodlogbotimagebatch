@@ -1,64 +1,70 @@
 var webshot = require('./lib/webshot');
 var express = require('express');
 var app = express();
-var fileName = 'weight.png';
 
 app.set('port', (process.env.PORT || 5000));
 
 
 app.get('/', function (req, res) {
     
-var options = {
-   /* screenSize: {
-        width: 320
-      , height: 480
-    }, 
-    shotSize: {
-        width: 320
-      , height: 500//'all'
-    }, 
-    userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
-        + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
-        */
-    renderDelay: 5000
-};
-
-webshot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3', './' + fileName, options, function(err) {
-  if (err) { 
-        res.send(err);
-        return console.log(err);
-  }
-  console.log('OK');
-    
-	var request = require('request');
-	var fs = require('fs');
-	var url ='https://requestb.in/1k094v51'
+    var options = {
+       /* screenSize: {
+            width: 320
+          , height: 480
+        }, 
+        shotSize: {
+            width: 320
+          , height: 500//'all'
+        }, 
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+            */
+        renderDelay: 5000
+    };
 
 
+    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png');
+    sendShot('https://foodlogbotonlinereports.herokuapp.com/timeline/index2.html','timeline.png');
+
+    function sendShot(url, filename) {    
+
+        webshot(url, './' + fileName, options, function(err) {
+          if (err) { 
+                res.send(err);
+                return console.log(err);
+          }
+          console.log('OK');
+
+            var request = require('request');
+            var fs = require('fs');
+            var url ='https://requestb.in/1k094v51'
 
 
-	var BOT_ID = "380968235:AAGqnrSERR8ABcw-_avcPN2ES3KH5SeZtNM";
-	var chat_id = "153350155";
-	var UrlTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendPhoto?chat_id=" + chat_id;
 
 
-	//fs.createReadStream('amazon.png').pipe(request.post(url))
+            var BOT_ID = "380968235:AAGqnrSERR8ABcw-_avcPN2ES3KH5SeZtNM";
+            var chat_id = "153350155";
+            var UrlTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendPhoto?chat_id=" + chat_id;
 
 
-	var formData = {
-	  photo: fs.createReadStream(fileName)
-	};
-	request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
-	  if (err) {
-          res.send(err)
-  
-	    return console.error('upload failed:', err);
-	  }
-	  console.log('Upload successful!  Server responded with:', body);
-      res.send("OK")
-    });
+            //fs.createReadStream('amazon.png').pipe(request.post(url))
 
-});
+
+            var formData = {
+              photo: fs.createReadStream(fileName)
+            };
+            request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
+              if (err) {
+                  res.send(err)
+
+                return console.error('upload failed:', err);
+              }
+              console.log('Upload successful!  Server responded with:', body);
+              res.send("OK")
+            });
+
+        });
+    }
 
 });
 
