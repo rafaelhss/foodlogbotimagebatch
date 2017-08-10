@@ -24,6 +24,7 @@ app.get('/timeline', function (req, res) {
 
 
     sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3','timeline.png', options2);
+    res.sendStatus(200)
 
 });
 
@@ -45,6 +46,7 @@ app.get('/', function (req, res) {
     };
 
     sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png', options);
+    res.sendStatus(200)
      
 });
 
