@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
         renderDelay: 5000
     };
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3&userid='+req.query.userid','weight.png', options);
+    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3&userid='+req.query.userid,'weight.png', options);
     res.sendStatus(200)
      
 });
