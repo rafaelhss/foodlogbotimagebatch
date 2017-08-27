@@ -23,7 +23,7 @@ app.get('/timeline', function (req, res) {
     };
 
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3','timeline.png', options2);
+    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3&userid='+req.query.userid,'timeline.png', options2);
     res.sendStatus(200)
 
 });
@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
         renderDelay: 5000
     };
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3','weight.png', options);
+    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3&userid='+req.query.userid','weight.png', options);
     res.sendStatus(200)
      
 });
@@ -55,7 +55,9 @@ app.listen(app.get('port'), function () {
 });
 
 
-function sendShot(url, fileName, options) {    
+function sendShot(url, fileName, options) {  
+	
+	console.log(' @@@@@@@ url:' + url); 
 
         webshot(url, './' + fileName, options, function(err) {
           if (err) { 
