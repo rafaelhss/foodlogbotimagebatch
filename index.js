@@ -8,10 +8,10 @@ app.set('port', (process.env.PORT || 5000));
 app.get('/bodypanel', function (req, res) {
 
     var options2 = {
-       /* screenSize: {
+        screenSize: {
             width: 320
           , height: 480
-        },*/ 
+        }, 
         shotSize: {
             width: 'all'
           , height: 'all'
