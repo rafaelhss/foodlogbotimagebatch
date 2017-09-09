@@ -5,6 +5,30 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 
+app.get('/bodypanel', function (req, res) {
+
+    var options2 = {
+       /* screenSize: {
+            width: 320
+          , height: 480
+        },*/ 
+        shotSize: {
+            /*width: 320
+          , */height: 'all'
+        }, /*
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+            */
+        renderDelay: 10000
+    };
+
+
+    sendShot('http://foodlogbotonlinereports.herokuapp.com/bodylog/index.html?image-type=panel&userid='+req.query.userid,'panel.png', options2);
+    res.sendStatus(200)
+
+});
+
+
 app.get('/timeline', function (req, res) {
 
     var options2 = {
