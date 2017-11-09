@@ -3,9 +3,11 @@ var express = require('express');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
+app.set('foodloghost', (process.env.FOODLOGHOST || 'http://localhost:8080/foodlog'))
 
 
-app.get('/bodypanel', function (req, res) {
+
+app.get('/report', function (req, res) {
 
     var options2 = {
         screenSize: {
@@ -23,7 +25,38 @@ app.get('/bodypanel', function (req, res) {
     };
 
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com/bodylog/index.html?image-type=panel&userid='+req.query.userid,'panel.png', options2);
+    var url = app.get('foodloghost') + '/report/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    
+    var filename = 'report'+req.query.userid +'.png';
+    
+    sendShot(url ,filename, options2);
+    res.sendStatus(200)
+
+});
+
+app.get('/bodylog', function (req, res) {
+
+    var options2 = {
+        screenSize: {
+            width: 320
+          , height: 480
+        }, 
+        shotSize: {
+            width: 'all'
+          , height: 'all'
+        }, /*
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+            */
+        renderDelay: 10000
+    };
+
+    var url = app.get('foodloghost') + '/bodylog/index.html?image-type=panel&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    
+    var filename = 'body'+req.query.userid +'.png';
+    
+    sendShot(url ,filename, options2);
+    
     res.sendStatus(200)
 
 });
@@ -46,15 +79,19 @@ app.get('/timeline', function (req, res) {
         renderDelay: 10000
     };
 
+    var url = app.get('foodloghost') + '/timeline/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    
+    var filename = 'time'+req.query.userid +'.png';
+    
+    sendShot(url ,filename, options2);
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com/timeline/index.html?utcOffset=-3&userid='+req.query.userid,'timeline.png', options2);
     res.sendStatus(200)
 
 });
 
-app.get('/', function (req, res) {
+app.get('/weight', function (req, res) {
     
-    var options = {
+    var options2 = {
        /* screenSize: {
             width: 320
           , height: 480
@@ -69,8 +106,14 @@ app.get('/', function (req, res) {
         renderDelay: 5000
     };
 
-    sendShot('http://foodlogbotonlinereports.herokuapp.com?utcOffset=-3&userid='+req.query.userid,'weight.png', options);
+    var url = app.get('foodloghost') + '/weight/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    
+    var filename = 'weight'+req.query.userid +'.png';
+    
+    sendShot(url ,filename, options2);
+
     res.sendStatus(200)
+    
      
 });
 
