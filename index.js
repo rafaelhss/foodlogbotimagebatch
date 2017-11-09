@@ -124,7 +124,7 @@ app.listen(app.get('port'), function () {
 
 function sendShot(url, fileName, options) {  
 	
-	console.log(' @@@@@@@ url:' + url); 
+	console.log(' @@@@x@@@ url:' + url); 
 
         webshot(url, './' + fileName, options, function(err) {
           if (err) { 
