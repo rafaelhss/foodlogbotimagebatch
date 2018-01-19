@@ -79,7 +79,7 @@ app.get('/timeline', function (req, res) {
         renderDelay: 15000
     };
 
-    var url = app.get('foodloghost') + '/evolution/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    var url = app.get('foodloghost') + '/timeline/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
     
     var filename = 'time'+req.query.userid +'.png';
     
