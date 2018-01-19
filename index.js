@@ -116,7 +116,7 @@ function sendShot(url, fileName, options) {
             var BOT_ID = "380968235:AAGqnrSERR8ABcw-_avcPN2ES3KH5SeZtNM";
             var chat_id = "153350155";
             var UrlTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendPhoto?chat_id=" + chat_id;
-	    var UrlTextTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendmessage?chat_id="+ chat_id + "&text=" + url;
+	    var UrlTextTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendmessage?chat_id="+ chat_id + "&text=" + encodeURIComponent(url);
 
 
             //fs.createReadStream('amazon.png').pipe(request.post(url))
