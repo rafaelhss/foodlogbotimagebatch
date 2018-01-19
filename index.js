@@ -109,8 +109,7 @@ function sendShot(url, fileName, options) {
 
             var request = require('request');
             var fs = require('fs');
-            var url ='https://requestb.in/1k094v51'
-
+            
 
 
 
@@ -134,7 +133,7 @@ function sendShot(url, fileName, options) {
               console.log('Upload successful!  Server responded with:', body);
             });
 
-	    request.get(UrlTextTemplate + UrlTemplate, function optionalCallback(err, httpResponse, body) {
+	    request.get(UrlTextTemplate, function optionalCallback(err, httpResponse, body) {
               if (err) {
                 return console.error('upload failed:', err);
               }
