@@ -7,7 +7,7 @@ app.set('foodloghost', (process.env.FOODLOGHOST || 'http://localhost:8080/foodlo
 
 
 
-app.get('/report', function (req, res) {
+app.get('/evolution', function (req, res) {
 
     var options2 = {
         screenSize: {
@@ -25,7 +25,7 @@ app.get('/report', function (req, res) {
     };
 
 
-    var url = app.get('foodloghost') + '/report/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    var url = app.get('foodloghost') + '/evolution/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
     
     var filename = 'report'+req.query.userid +'.png';
     
@@ -89,36 +89,10 @@ app.get('/timeline', function (req, res) {
 
 });
 
-app.get('/weight', function (req, res) {
-    
-    var options2 = {
-       /* screenSize: {
-            width: 320
-          , height: 480
-        }, 
-        shotSize: {
-            width: 320
-          , height: 'all'
-        }, /*
-        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
-            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
-            */
-        renderDelay: 5000
-    };
 
-    var url = app.get('foodloghost') + '/weight/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
-    
-    var filename = 'weight'+req.query.userid +'.png';
-    
-    sendShot(url ,filename, options2);
-
-    res.sendStatus(200)
-    
-     
-});
 
 app.listen(app.get('port'), function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Servidor iniciado na porta ' + app.get('port'));
 });
 
 
@@ -143,6 +117,7 @@ function sendShot(url, fileName, options) {
             var BOT_ID = "380968235:AAGqnrSERR8ABcw-_avcPN2ES3KH5SeZtNM";
             var chat_id = "153350155";
             var UrlTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendPhoto?chat_id=" + chat_id;
+	    var UrlTextTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendmessage?chat_id="+ chat_id + "&text=" + UrlTemplate;
 
 
             //fs.createReadStream('amazon.png').pipe(request.post(url))
@@ -151,12 +126,22 @@ function sendShot(url, fileName, options) {
             var formData = {
               photo: fs.createReadStream(fileName)
             };
-            request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
+            
+	    request.post({url:UrlTemplate, formData: formData}, function optionalCallback(err, httpResponse, body) {
               if (err) {
                 return console.error('upload failed:', err);
               }
               console.log('Upload successful!  Server responded with:', body);
             });
+
+	    request.get(UrlTextTemplate + UrlTemplate, function optionalCallback(err, httpResponse, body) {
+              if (err) {
+                return console.error('upload failed:', err);
+              }
+              console.log('Upload text successful!  Server responded with:', body);
+            });
+
+	    
 
         });
     }
