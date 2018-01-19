@@ -76,7 +76,7 @@ app.get('/timeline', function (req, res) {
         userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
             + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
             */
-        renderDelay: 20000
+        renderDelay: 30000
     };
 
     var url = app.get('foodloghost') + '/timeline/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
