@@ -65,10 +65,10 @@ app.get('/bodylog', function (req, res) {
 app.get('/timeline', function (req, res) {
 
     var options2 = {
-       /* screenSize: {
+        screenSize: {
             width: 320
           , height: 480
-        },*/ 
+        }, 
         shotSize: {
             /*width: 320
           , */height: 'all'
