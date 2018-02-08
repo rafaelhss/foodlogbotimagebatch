@@ -11,7 +11,7 @@ app.get('/evolution', function (req, res) {
 
     var options2 = {
         screenSize: {
-            width: 320
+            width: 1000
           , height: 480
         }, 
         shotSize: {
