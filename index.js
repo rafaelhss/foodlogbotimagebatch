@@ -29,7 +29,7 @@ app.get('/evolution', function (req, res) {
     
     var filename = 'report'+req.query.userid +'.png';
     
-    sendShot(url ,filename, options2);
+    sendShot(url ,filename, options2, req.query['usertelegram']);
     res.sendStatus(200)
 
 });
@@ -55,7 +55,7 @@ app.get('/bodylog', function (req, res) {
     
     var filename = 'body'+req.query.userid +'.png';
     
-    sendShot(url ,filename, options2);
+    sendShot(url ,filename, options2, req.query['usertelegram']);
     
     res.sendStatus(200)
 
@@ -84,7 +84,7 @@ app.get('/timeline', function (req, res) {
     
     var filename = 'time'+req.query.userid +'.png';
     
-    sendShot(url ,filename, options2);
+    sendShot(url ,filename, options2, req.query['usertelegram']);
 
     res.sendStatus(200)
 
@@ -97,7 +97,7 @@ app.listen(app.get('port'), function () {
 });
 
 
-function sendShot(url, fileName, options) {  
+function sendShot(url, fileName, options, usertelegram) {  
 	
 	console.log(' @@@@x@@@ url:' + url); 
 
@@ -115,7 +115,7 @@ function sendShot(url, fileName, options) {
 
 
             var BOT_ID = "380968235:AAGqnrSERR8ABcw-_avcPN2ES3KH5SeZtNM";
-            var chat_id = "153350155";
+            var chat_id = usertelegram;//"153350155";
             var UrlTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendPhoto?chat_id=" + chat_id;
 	    var UrlTextTemplate = "https://api.telegram.org/bot" + BOT_ID + "/sendmessage?chat_id="+ chat_id + "&text=" + encodeURIComponent(url);
 
