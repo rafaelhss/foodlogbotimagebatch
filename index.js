@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
-app.set('foodloghost', (process.env.FOODLOGHOST || 'http://localhost:8080/foodlog'))
+app.set('foodloghost', (process.env.FOODLOGHOST || 'http://foodlogbot2adm.herokuapp.com/foodlog'))
 
 
 
@@ -66,18 +66,19 @@ app.get('/timeline', function (req, res) {
 
     var options2 = {
         screenSize: {
-            width: 320
-          , height: 480
+            width: 300/*
+          , height: 667*/
         }, 
         shotSize: {
-            /*width: 320
-          , */height: 'all'
+            width: 'all'
+          , height: 'all'
         }, /*
         userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
             + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
             */
-        renderDelay: 30000
+        renderDelay: 20000
     };
+
 
     var url = app.get('foodloghost') + '/timeline/index.html?utcOffset=-3&userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
     
@@ -105,7 +106,7 @@ function sendShot(url, fileName, options) {
                 res.send(err);
                 return console.log(err);
           }
-          console.log('OK:  ' + fileName);
+          console.log('OK3:  ' + fileName);
 
             var request = require('request');
             var fs = require('fs');
