@@ -7,7 +7,7 @@ app.set('foodloghost', (process.env.FOODLOGHOST || 'http://foodlogbot2adm.heroku
 
 
 
-app.get('/evolution', function (req, res) {
+app.get('/weight', function (req, res) {
 
     var options2 = {
         screenSize: {
@@ -25,10 +25,38 @@ app.get('/evolution', function (req, res) {
     };
 
 
-    var url = app.get('foodloghost') + '/evolution/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+    var url = app.get('foodloghost') + '/weight/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
     
     var filename = 'report'+req.query.userid +'.png';
     
+    sendShot(url ,filename, options2, req.query['usertelegram']);
+    res.sendStatus(200)
+
+});
+
+
+app.get('/evolution', function (req, res) {
+
+    var options2 = {
+        screenSize: {
+            width: 1000
+          , height: 480
+        },
+        shotSize: {
+            width: 'all'
+          , height: 'all'
+        }, /*
+        userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us)'
+            + ' AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g',
+            */
+        renderDelay: 20000
+    };
+
+
+    var url = app.get('foodloghost') + '/evolution/index.html?userid='+req.query.userid + "&auth-token=" + req.query['auth-token'];
+
+    var filename = 'report'+req.query.userid +'.png';
+
     sendShot(url ,filename, options2, req.query['usertelegram']);
     res.sendStatus(200)
 
