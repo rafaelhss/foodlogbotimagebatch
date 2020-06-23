@@ -18,9 +18,10 @@
     "type": "git",
     "url": "http://github.com/brenden/node-webshot.git"
   },
-  "engine": [
-    "node >=0.7.00"
-  ],
+  "engines": {
+    "node": "12.1.0",
+    "npm": "6.9.0"
+  },
   "dependencies": {
     "cross-spawn": "^0.2.3",
     "express": "^4.15.4",
