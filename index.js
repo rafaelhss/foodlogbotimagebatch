@@ -127,7 +127,7 @@ app.listen(app.get('port'), function () {
 
 function sendShot(url, fileName, options, usertelegram) {  
 	
-	console.log(' @@@@x@@@ url:' + url); 
+	console.log(' @@@x@@@ url:' + url);
 
         webshot(url, './' + fileName, options, function(err) {
           if (err) { 
@@ -149,6 +149,9 @@ function sendShot(url, fileName, options, usertelegram) {
 
 
             //fs.createReadStream('amazon.png').pipe(request.post(url))
+
+            console.log(UrlTemplate)
+            console.log(UrlTextTemplate)
 
 
             var formData = {
