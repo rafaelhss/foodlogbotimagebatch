@@ -19,7 +19,7 @@
     "url": "http://github.com/brenden/node-webshot.git"
   },
   "engines": {
-    "node": "12.1.0",
+    "node": "11.15.0",
     "npm": "6.9.0"
   },
   "dependencies": {
